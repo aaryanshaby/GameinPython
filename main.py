@@ -11,6 +11,9 @@ pygame.display.set_caption(" The Battle of the Morannon")
 icon = pygame.image.load('onering.png')
 pygame.display.set_icon(icon)
 
+def randomXgenerate(x,y):
+    return random.randint(x,y)
+
 # player1 = gondorians
 player1img = pygame.image.load('player1.png')
 player1X = 460
@@ -47,6 +50,25 @@ enemyfor31Y = 650
 # enemyfor51X = random.randint(0,900)
 # enemyfor51Y = 0
 
+fixedobstacle1X = randomXgenerate(0,350)
+fixedobstacle1Y = 210
+
+fixedobstacle2X = randomXgenerate(0,350)
+fixedobstacle2Y = 450
+
+fixedobstacle3X = randomXgenerate(390,900)
+fixedobstacle3Y = 210
+
+fixedobstacle4X = randomXgenerate(390,900)
+fixedobstacle4Y = 450
+
+fixedobstacle01X = randomXgenerate(450,900)
+fixedobstacle01Y = 10
+
+
+fixedobstacle02X = randomXgenerate(0,300)
+fixedobstacle02Y = 730
+
 
 
 player1X_change = 0
@@ -55,8 +77,17 @@ enemyspeed = 1.1
 enemyspeed1 = 1.8
 enemyspeed2 = 1.6
 playerspeed = 2
+
 #basestation
 basestation = pygame.image.load('wood.png')
+
+#fixed obstacles
+fixedobstacle1img = pygame.image.load('trap.png')
+fixedobstacle2img = pygame.image.load('volcano256.png')
+fixedobstacle3img = pygame.image.load('traps.png')
+fixedobstacle4img = pygame.image.load('skull2.png')
+fixedobstacle01img = pygame.image.load('fire64.png')
+fixedobstacle02img = pygame.image.load('toxic.png')
 
 def fbasestation(x,y):
     screen.blit(basestation,(x,y))
@@ -95,6 +126,23 @@ def enemyfor31(x, y):
 # def enemyfor51(x, y):
 #     screen.blit(enemyfor1img, (x, y))
 
+def fixedobstacle1(x,y):
+    screen.blit(fixedobstacle1img, (x, y))
+
+def fixedobstacle2(x,y):
+    screen.blit(fixedobstacle2img, (x, y))
+
+def fixedobstacle3(x,y):
+    screen.blit(fixedobstacle3img, (x, y))
+
+def fixedobastacle4(x,y):
+    screen.blit(fixedobstacle4img, (x, y))
+
+def fixedobstacle01(x,y):
+    screen.blit(fixedobstacle01img, (x, y))
+
+def fixedobstacle02(x,y):
+    screen.blit(fixedobstacle02img, (x, y))
 
 
 # Game loop
@@ -148,6 +196,14 @@ while running:
         fbasestation(j, i)
         i = 735
         fbasestation(j, i)
+
+    #placing fixed obstacles
+        fixedobstacle1(fixedobstacle1X,fixedobstacle1Y)
+        fixedobstacle2(fixedobstacle2X,fixedobstacle2Y)
+        fixedobstacle3(fixedobstacle3X,fixedobstacle3Y)
+        fixedobstacle01(fixedobstacle01X,fixedobstacle01Y)
+        fixedobstacle02(fixedobstacle02X, fixedobstacle02Y)
+        fixedobastacle4(fixedobstacle4X,fixedobstacle4Y)
 
     #stoping the player from going out of border
     if player1X < 0 or player1X > 939:

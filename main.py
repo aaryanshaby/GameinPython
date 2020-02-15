@@ -1,6 +1,7 @@
 import pygame
 import random
 # initialise pygame
+#comment by divyansh
 pygame.init()
 
 # creating the screen

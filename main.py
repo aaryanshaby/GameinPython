@@ -207,6 +207,7 @@ while running:
 
     #stoping the player from going out of border
     #introducing boundaries
+    #beyond boundaries
     if player1X < 0 or player1X > 939:
         player1X_change = 0
     if player1Y < 0 or player1Y > 730:

@@ -75,9 +75,9 @@ fixedobstacle02Y = 730
 
 player1X_change = 0
 player1Y_change = 0
-enemyspeed = 1.1
-enemyspeed1 = 1.8
-enemyspeed2 = 1.6
+enemyspeed = 3
+enemyspeed1 = 3
+enemyspeed2 = 3
 playerspeed = 2
 
 # basestation
@@ -91,6 +91,15 @@ fixedobstacle4img = pygame.image.load('skull2.png')
 fixedobstacle01img = pygame.image.load('fire64.png')
 fixedobstacle02img = pygame.image.load('toxic.png')
 
+score_value = 0
+font = pygame.font.Font('freesansbold.ttf',32)
+
+textX = 10
+textY = 10
+ 
+def show_score(x, y):
+    score = font.render("Score:" + str(score_value), True, (255,255,255))
+    screen.blit(score,(x, y))
 
 def fbasestation(x, y):
     screen.blit(basestation, (x, y))
@@ -188,24 +197,18 @@ while running:
         # check pressed key
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                print("left arrow is preesed")
                 player1X_change = -playerspeed
             if event.key == pygame.K_RIGHT:
-                print("right arrow is preesed")
                 player1X_change = playerspeed
             if event.key == pygame.K_UP:
-                print("up arrow is preesed")
                 player1Y_change = -playerspeed
             if event.key == pygame.K_DOWN:
-                print("down arrow is preesed")
                 player1Y_change = playerspeed
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
-                print("l R arrow is released")
                 player1X_change = 0
             if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
-                print("u d is released")
                 player1Y_change = 0
 
     player1X += player1X_change
@@ -305,12 +308,39 @@ while running:
     # if  (player1Y > c + 4 *b and player1Y < c + 9*b):
     #     if player1X < enemyfor5X:
     #         enemyfor5X -= enemyspeed
-    #     elif player1X > enemyfor5X:
+    #     elif player1X > enemyfor5X: 
     #         enemyfor5X += enemyspeed1
     #     if player1X < enemyfor51X:
     #         enemyfor51X -= enemyspeed
     #     elif player1X > enemyfor51X:
     #         enemyfor51X += enemyspeed2
+
+    if (player1Y > enemyfor1Y):
+        score_value +=10
+    if (player1Y > enemyfor11Y):
+        score_value += 10
+    if (player1Y > enemyfor2Y):
+        score_value +=10
+    if (player1Y > enemyfor21Y):
+        score_value +=10
+    if (player1Y > enemyfor3Y):
+        score_value +=10
+    if (player1Y > enemyfor31Y):
+        score_value +=10
+
+    if(player1Y > fixedobstacle1Y):
+        score_value +=5
+    if (player1Y > fixedobstacle2Y):
+        score_value += 5
+    if (player1Y > fixedobstacle3Y):
+        score_value += 5
+    if (player1Y > fixedobstacle4Y):
+        score_value += 5
+    if (player1Y == fixedobstacle01Y):
+        score_value += 5
+    if (player1Y == fixedobstacle02Y):
+        score_value += 5
+
 
     player1(player1X, player1Y)
     enemyfor1(enemyfor1X, enemyfor1Y)
@@ -323,5 +353,6 @@ while running:
     enemyfor31(enemyfor31X, enemyfor31Y)
     # enemyfor41(enemyfor41X, enemyfor41Y)
     # enemyfor51(enemyfor51X, enemyfor51Y)
+    show_score(textX, textY)
 
     pygame.display.update()

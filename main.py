@@ -92,14 +92,16 @@ fixedobstacle01img = pygame.image.load('fire64.png')
 fixedobstacle02img = pygame.image.load('toxic.png')
 
 score_value = 0
-font = pygame.font.Font('freesansbold.ttf',32)
+font = pygame.font.Font('freesansbold.ttf', 32)
 
 textX = 10
 textY = 10
 
+
 def show_score(x, y):
-    score = font.render("Score:" + str(score_value), True, (255,255,255))
-    screen.blit(score,(x, y))
+    score = font.render("Score:" + str(score_value), True, (255, 255, 255))
+    screen.blit(score, (x, y))
+
 
 def fbasestation(x, y):
     screen.blit(basestation, (x, y))
@@ -176,6 +178,7 @@ def isCollision(enemyX, enemyY, playerX, playerY):
     else:
         return False
 
+
 def isCollisiono(enemyX, enemyY, playerX, playerY):
     distance = math.sqrt((math.pow(enemyX - playerX, 2)) + (math.pow(enemyY - player1Y, 2)))
     if distance < 96:
@@ -183,6 +186,20 @@ def isCollisiono(enemyX, enemyY, playerX, playerY):
     else:
         return False
 
+
+counter = 0
+cr1 = 0
+cr2 = 0
+cr3 = 0
+cr4 = 0
+cr5 = 0
+cr6 = 0
+cr7 = 0
+cr8 = 0
+cr9 = 0
+cr10 = 0
+cr11 = 0
+cr12 = 0
 
 running = True
 while running:
@@ -290,7 +307,7 @@ while running:
     collision12 = isCollision(fixedobstacle02X, fixedobstacle02Y, player1X, player1Y)
 
     if collision1 or collision2 or collision3 or collision4 or collision5 or collision6 or collision7 or collision8 or collision9 or collision10 or collision11 or collision12:
-        #what to do when dead
+        # what to do when dead
         player1X = 460
         player1Y = 720
     # Game loop
@@ -314,39 +331,49 @@ while running:
     #         enemyfor51X -= enemyspeed
     #     elif player1X > enemyfor51X:
     #         enemyfor51X += enemyspeed2
-    counter = 0
-    if (player1Y < enemyfor1Y):
-        counter = 1
-    if (player1Y < enemyfor11Y):
-        counter = 1
-    if (player1Y < enemyfor2Y):
-        counter = 1
-    if (player1Y < enemyfor21Y):
-        counter = 1
-    if (player1Y < enemyfor3Y):
-        counter = 1
-    if (player1Y < enemyfor31Y):
-        counter = 1
 
-    if(player1Y < fixedobstacle1Y):
+    if (player1Y < enemyfor1Y and cr1 == 0):
+        counter = 1
+        cr1 = 1
+    if (player1Y < enemyfor11Y and cr11 == 0):
+        counter = 1
+        cr11 = 1
+    if (player1Y < enemyfor2Y and cr3 == 0):
+        counter = 1
+        cr3 = 1
+    if (player1Y < enemyfor21Y and cr4 == 0):
+        counter = 1
+        cr4 = 1
+    if (player1Y < enemyfor3Y and cr2 == 0):
+        counter = 1
+        cr2 = 1
+    if (player1Y < enemyfor31Y and cr5 == 0):
+        counter = 1
+        cr5 = 1
+    if (player1Y < fixedobstacle1Y and cr6 == 0):
         counter = 2
-    if (player1Y < fixedobstacle2Y):
+        cr6 = 1
+    if (player1Y < fixedobstacle2Y and cr7 == 0):
         counter = 2
-    if (player1Y < fixedobstacle3Y):
+        cr7 = 1
+    if (player1Y < fixedobstacle3Y and cr8 == 0):
         counter = 2
-    if (player1Y < fixedobstacle4Y):
+        cr8 = 1
+    if (player1Y < fixedobstacle4Y and cr9 == 0):
         counter = 2
-    if (player1Y < fixedobstacle01Y):
+        cr9 = 1
+    if (player1Y < fixedobstacle01Y and cr10 == 0):
         counter = 2
-    if (player1Y < fixedobstacle02Y):
+        cr10 = 1
+    if (player1Y < fixedobstacle02Y and cr12 == 0):
         counter = 2
-
-    if counter ==1:
+        cr12 = 1
+    if counter == 1:
         score_value += 10
         counter = 0
-    if counter ==2:
+    if counter == 2:
         score_value += 5
-
+        counter = 0
 
     player1(player1X, player1Y)
     enemyfor1(enemyfor1X, enemyfor1Y)

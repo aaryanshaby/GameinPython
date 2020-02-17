@@ -314,31 +314,37 @@ while running:
     #         enemyfor51X -= enemyspeed
     #     elif player1X > enemyfor51X:
     #         enemyfor51X += enemyspeed2
-
+    counter = 0
     if (player1Y < enemyfor1Y):
-        score_value +=10
+        counter = 1
     if (player1Y < enemyfor11Y):
-        score_value += 10
+        counter = 1
     if (player1Y < enemyfor2Y):
-        score_value +=10
+        counter = 1
     if (player1Y < enemyfor21Y):
-        score_value +=10
+        counter = 1
     if (player1Y < enemyfor3Y):
-        score_value +=10
+        counter = 1
     if (player1Y < enemyfor31Y):
-        score_value +=10
+        counter = 1
 
     if(player1Y < fixedobstacle1Y):
-        score_value += 5
+        counter = 2
     if (player1Y < fixedobstacle2Y):
-        score_value += 5
+        counter = 2
     if (player1Y < fixedobstacle3Y):
-        score_value += 5
+        counter = 2
     if (player1Y < fixedobstacle4Y):
-        score_value += 5
+        counter = 2
     if (player1Y < fixedobstacle01Y):
-        score_value += 5
+        counter = 2
     if (player1Y < fixedobstacle02Y):
+        counter = 2
+
+    if counter ==1:
+        score_value += 10
+        counter = 0
+    if counter ==2:
         score_value += 5
 
 

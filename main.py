@@ -64,6 +64,7 @@ enemyfor31Y = 650
 # enemyfor51X = random.randint(0,900)
 # enemyfor51Y = 0
 
+#fixed obstacles
 fixedobstacle1X = randomXgenerate(0, 350)
 fixedobstacle1Y = 210
 

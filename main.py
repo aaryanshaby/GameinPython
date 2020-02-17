@@ -201,6 +201,12 @@ def isCollisiono(enemyX, enemyY, playerX, playerY):
 def resetgame():
     print("reset game called")
     global counter, cr1, cr2, cr3, cr4, cr5, cr6, cr7, cr8, cr9, cr10, cr11, cr12, time_score_change
+    global score_list, score_value, time_score, time_score_change, rounding
+    score_list[rounding - 1] = score_value + time_score
+    score_value = 0
+    time_score = 100
+    time_score_change = 0
+    rounding += 1
     counter = 0
     cr1 = 0
     cr2 = 0
@@ -215,7 +221,6 @@ def resetgame():
     cr11 = 0
     cr12 = 0
     time_score_change = 0.1
-    global rounding
     global player1X
     global player1Y
     global player2X
@@ -352,8 +357,7 @@ while running:
 
     if collision1 or collision2 or collision3 or collision4 or collision5 or collision6 or collision7 or collision8 or collision9 or collision10 or collision11 or collision12:
         # what to do when dead
-        player1X = 460
-        player1Y = 720
+        resetgame()
     # Game loop
 
     # if  (player1Y > c + 3 *b + 5 and player1Y < c + 7*b):
@@ -419,12 +423,7 @@ while running:
         score_value += 5
         counter = 0
     if score_value == 90:
-        score_list[rounding - 1] = score_value + time_score
-        score_value = 0
-        time_score = 100
-        time_score_change = 0
-        rounding+=1
-        resetgame()
+         resetgame()
     time_score-=time_score_change
 
 

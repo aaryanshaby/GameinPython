@@ -36,6 +36,7 @@ enemyfor1Y_change = 0
 a = 92
 b = 140
 c = 10
+cute = 5
 # enemy
 enemyfor1img = pygame.image.load('orc1.png')
 enemyfor2img = pygame.image.load('snake.png')
@@ -360,40 +361,40 @@ while running:
     #     elif player1X > enemyfor51X:
     #         enemyfor51X += enemyspeed2
 
-    if (player1Y < enemyfor1Y and cr1 == 0):
+    if ((player1Y < enemyfor1Y and rounding % 2 == 1) or (player1Y + cute > enemyfor1Y and rounding % 2 == 0) and cr1 == 0):
         counter = 1
         cr1 = 1
-    if (player1Y < enemyfor11Y and cr11 == 0):
+    if ((player1Y < enemyfor11Y and rounding % 2 == 1) or (player1Y + cute > enemyfor11Y and rounding % 2 == 0) and cr11 == 0):
         counter = 1
         cr11 = 1
-    if (player1Y < enemyfor2Y and cr3 == 0):
+    if ((player1Y < enemyfor2Y and rounding % 2 == 1) or (player1Y + cute > enemyfor2Y and rounding % 2 == 0) and cr3 == 0):
         counter = 1
         cr3 = 1
-    if (player1Y < enemyfor21Y and cr4 == 0):
+    if ((player1Y < enemyfor21Y and rounding % 2 == 1) or (player1Y + cute > enemyfor21Y and rounding % 2 == 0) and cr4 == 0):
         counter = 1
         cr4 = 1
-    if (player1Y < enemyfor3Y and cr2 == 0):
+    if ((player1Y < enemyfor3Y and rounding % 2 == 1) or (player1Y + cute > enemyfor3Y and rounding % 2 == 0) and cr2 == 0):
         counter = 1
         cr2 = 1
-    if (player1Y < enemyfor31Y and cr5 == 0):
+    if ((player1Y < enemyfor31Y and rounding % 2 == 1) or (player1Y + cute > enemyfor31Y and rounding % 2 == 0) and cr5 == 0):
         counter = 1
         cr5 = 1
-    if (player1Y < fixedobstacle1Y and cr6 == 0):
+    if ((player1Y < fixedobstacle1Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle1Y and rounding % 2 == 0) and cr6 == 0):
         counter = 1
         cr6 = 1
-    if (player1Y < fixedobstacle2Y and cr7 == 0):
+    if ((player1Y < fixedobstacle2Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle2Y and rounding % 2 == 0) and cr7 == 0):
         counter = 1
         cr7 = 1
-    if (player1Y < fixedobstacle3Y and cr8 == 0):
+    if ((player1Y < fixedobstacle3Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle3Y and rounding % 2 == 0) and cr8 == 0):
         counter = 1
         cr8 = 1
-    if (player1Y < fixedobstacle4Y and cr9 == 0):
+    if ((player1Y < fixedobstacle4Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle4Y and rounding % 2 == 0) and cr9 == 0):
         counter = 1
         cr9 = 1
-    if (player1Y < fixedobstacle01Y and cr10 == 0):
+    if ((player1Y < fixedobstacle01Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle01Y and rounding % 2 == 0) and cr10 == 0):
         counter = 2
         cr10 = 1
-    if (player1Y < fixedobstacle02Y and cr12 == 0):
+    if ((player1Y < fixedobstacle02Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle02Y and rounding % 2 == 0) and cr12 == 0):
         counter = 2
         cr12 = 1
     if counter == 1:

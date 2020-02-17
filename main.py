@@ -19,10 +19,16 @@ def randomXgenerate(x, y):
     return random.randint(x, y)
 
 
-# player1 = gondorians
+# player1 = Gondorians
 player1img = pygame.image.load('player1.png')
 player1X = 460
 player1Y = 720
+# player2 = Rohanians
+player2img = pygame.image.load('player1.png')
+player2X = 460
+player2Y = 5
+#rounds
+rounding = 1
 enemyfor1X_change = 0
 enemyfor1Y_change = 0
 a = 92
@@ -73,12 +79,14 @@ fixedobstacle01Y = 10
 fixedobstacle02X = randomXgenerate(0, 300)
 fixedobstacle02Y = 730
 
+score_list = [None]*6
+time_score = 100
 player1X_change = 0
 player1Y_change = 0
-enemyspeed = 3
-enemyspeed1 = 3
-enemyspeed2 = 3
-playerspeed = 2
+enemyspeed = 2
+enemyspeed1 = 2
+enemyspeed2 = 2
+playerspeed = 5
 
 # basestation
 basestation = pygame.image.load('wood.png')
@@ -99,7 +107,7 @@ textY = 10
 
 
 def show_score(x, y):
-    score = font.render("Score:" + str(score_value), True, (255, 255, 255))
+    score = font.render("Score:" + str(score_value) + "+" + str(time_score), True, (255, 255, 255))
     screen.blit(score, (x, y))
 
 
@@ -374,6 +382,12 @@ while running:
     if counter == 2:
         score_value += 5
         counter = 0
+    if score_value == 90:
+        score_list[rounding - 1] = score_value + time_score
+        score_value = 0
+        time_score = 100
+
+    time_score -= 0.001
 
     player1(player1X, player1Y)
     enemyfor1(enemyfor1X, enemyfor1Y)

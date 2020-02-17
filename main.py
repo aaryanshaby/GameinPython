@@ -81,6 +81,7 @@ fixedobstacle02Y = 730
 
 score_list = [None]*6
 time_score = 100
+time_score_change = 0
 player1X_change = 0
 player1Y_change = 0
 enemyspeed = 2
@@ -107,7 +108,7 @@ textY = 10
 
 
 def show_score(x, y):
-    score = font.render("Score:" + str(score_value) + "+" + str(time_score), True, (255, 255, 255))
+    score = font.render("Score:" + str(score_value) + "+" + str(time_score_change), True, (255, 255, 255))
     screen.blit(score, (x, y))
 
 
@@ -387,7 +388,8 @@ while running:
         score_value = 0
         time_score = 100
 
-    time_score -= 0.001
+    if score_value < 90:
+        time_score_change -= 0.1
 
     player1(player1X, player1Y)
     enemyfor1(enemyfor1X, enemyfor1Y)

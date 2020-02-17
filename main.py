@@ -23,6 +23,8 @@ def randomXgenerate(x, y):
 player1img = pygame.image.load('player1.png')
 player1X = 460
 player1Y = 720
+playerX = 460
+playerY = 720
 # player2 = Rohanians
 player2img = pygame.image.load('player1.png')
 player2X = 460
@@ -194,7 +196,25 @@ def isCollisiono(enemyX, enemyY, playerX, playerY):
         return True
     else:
         return False
+def resetgame():
+    print("reset game called")
+    global rounding
+    global player1X
+    global player1Y
+    global player2X
+    global player2Y
+    print(player1X,player1Y)
+    print(rounding)
 
+
+    if  rounding%2==0:
+        player1X = player2X
+        player1Y = player2Y
+    else:
+        player1X = playerX
+        player1Y = playerY
+
+    print(player1X,player1Y,rounding)
 counter = 0
 cr1 = 0
 cr2 = 0
@@ -386,9 +406,14 @@ while running:
         score_list[rounding - 1] = score_value + time_score
         score_value = 0
         time_score = 100
-    time_score-=time_score_change
-    if score_value == 90:
         time_score_change = 0
+        rounding+=1
+        resetgame()
+    time_score-=time_score_change
+
+
+
+
 
     player1(player1X, player1Y)
     enemyfor1(enemyfor1X, enemyfor1Y)

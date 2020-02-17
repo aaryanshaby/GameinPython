@@ -96,7 +96,7 @@ font = pygame.font.Font('freesansbold.ttf',32)
 
 textX = 10
 textY = 10
- 
+
 def show_score(x, y):
     score = font.render("Score:" + str(score_value), True, (255,255,255))
     screen.blit(score,(x, y))
@@ -315,30 +315,30 @@ while running:
     #     elif player1X > enemyfor51X:
     #         enemyfor51X += enemyspeed2
 
-    if (player1Y > enemyfor1Y):
+    if (player1Y < enemyfor1Y):
         score_value +=10
-    if (player1Y > enemyfor11Y):
+    if (player1Y < enemyfor11Y):
         score_value += 10
-    if (player1Y > enemyfor2Y):
+    if (player1Y < enemyfor2Y):
         score_value +=10
-    if (player1Y > enemyfor21Y):
+    if (player1Y < enemyfor21Y):
         score_value +=10
-    if (player1Y > enemyfor3Y):
+    if (player1Y < enemyfor3Y):
         score_value +=10
-    if (player1Y > enemyfor31Y):
+    if (player1Y < enemyfor31Y):
         score_value +=10
 
-    if(player1Y > fixedobstacle1Y):
-        score_value +=5
-    if (player1Y > fixedobstacle2Y):
+    if(player1Y < fixedobstacle1Y):
         score_value += 5
-    if (player1Y > fixedobstacle3Y):
+    if (player1Y < fixedobstacle2Y):
         score_value += 5
-    if (player1Y > fixedobstacle4Y):
+    if (player1Y < fixedobstacle3Y):
         score_value += 5
-    if (player1Y == fixedobstacle01Y):
+    if (player1Y < fixedobstacle4Y):
         score_value += 5
-    if (player1Y == fixedobstacle02Y):
+    if (player1Y < fixedobstacle01Y):
+        score_value += 5
+    if (player1Y < fixedobstacle02Y):
         score_value += 5
 
 

@@ -351,16 +351,16 @@ while running:
         counter = 1
         cr5 = 1
     if (player1Y < fixedobstacle1Y and cr6 == 0):
-        counter = 2
+        counter = 1
         cr6 = 1
     if (player1Y < fixedobstacle2Y and cr7 == 0):
-        counter = 2
+        counter = 1
         cr7 = 1
     if (player1Y < fixedobstacle3Y and cr8 == 0):
-        counter = 2
+        counter = 1
         cr8 = 1
     if (player1Y < fixedobstacle4Y and cr9 == 0):
-        counter = 2
+        counter = 1
         cr9 = 1
     if (player1Y < fixedobstacle01Y and cr10 == 0):
         counter = 2

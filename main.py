@@ -88,9 +88,9 @@ time_score = 100
 time_score_change = 0.1
 player1X_change = 0
 player1Y_change = 0
-enemyspeed = 2
+enemyspeed = 1
 enemyspeed1 = 2
-enemyspeed2 = 2
+enemyspeed2 = 2.5
 playerspeed = 5
 
 # basestation
@@ -202,7 +202,8 @@ def resetgame():
     print("reset game called")
     global counter, cr1, cr2, cr3, cr4, cr5, cr6, cr7, cr8, cr9, cr10, cr11, cr12, time_score_change
     global score_list, score_value, time_score, time_score_change, rounding
-    score_list[rounding - 1] = score_value + time_score
+    score_list[rounding - 1] = score_value + math.floor(time_score)
+    print (score_list)
     score_value = 0
     time_score = 100
     time_score_change = 0
@@ -224,13 +225,17 @@ def resetgame():
     global player1X
     global player1Y
     global player2X
-    global player2Y
+    global player2Y,enemyspeed,enemyspeed1,enemyspeed2
+
     print(player1X,player1Y)
     print(rounding)
 
     if  rounding%2==0:
         player1X = player2X
         player1Y = player2Y
+        enemyspeed += 1
+        enemyspeed2 += 1
+        enemyspeed += 1
     else:
         player1X = playerX
         player1Y = playerY

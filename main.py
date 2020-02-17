@@ -199,6 +199,21 @@ def isCollisiono(enemyX, enemyY, playerX, playerY):
         return False
 def resetgame():
     print("reset game called")
+    global counter, cr1, cr2, cr3, cr4, cr5, cr6, cr7, cr8, cr9, cr10, cr11, cr12, time_score_change
+    counter = 0
+    cr1 = 0
+    cr2 = 0
+    cr3 = 0
+    cr4 = 0
+    cr5 = 0
+    cr6 = 0
+    cr7 = 0
+    cr8 = 0
+    cr9 = 0
+    cr10 = 0
+    cr11 = 0
+    cr12 = 0
+    time_score_change = 0.1
     global rounding
     global player1X
     global player1Y
@@ -206,7 +221,6 @@ def resetgame():
     global player2Y
     print(player1X,player1Y)
     print(rounding)
-
 
     if  rounding%2==0:
         player1X = player2X

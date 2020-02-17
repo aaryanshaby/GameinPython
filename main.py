@@ -81,7 +81,7 @@ fixedobstacle02Y = 730
 
 score_list = [None]*6
 time_score = 100
-time_score_change = 0
+time_score_change = 0.1
 player1X_change = 0
 player1Y_change = 0
 enemyspeed = 2
@@ -108,7 +108,7 @@ textY = 10
 
 
 def show_score(x, y):
-    score = font.render("Score:" + str(score_value) + "+" + str(time_score_change), True, (255, 255, 255))
+    score = font.render("Score:" + str(score_value+ math.floor(time_score)), True, (255, 255, 255))
     screen.blit(score, (x, y))
 
 
@@ -194,7 +194,6 @@ def isCollisiono(enemyX, enemyY, playerX, playerY):
         return True
     else:
         return False
-
 
 counter = 0
 cr1 = 0
@@ -387,9 +386,9 @@ while running:
         score_list[rounding - 1] = score_value + time_score
         score_value = 0
         time_score = 100
-
-    if score_value < 90:
-        time_score_change -= 0.1
+    time_score-=time_score_change
+    if score_value == 90:
+        time_score_change = 0
 
     player1(player1X, player1Y)
     enemyfor1(enemyfor1X, enemyfor1Y)

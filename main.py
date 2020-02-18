@@ -251,18 +251,27 @@ def resetgame():
     print(player1X,player1Y,rounding)
 def gameend():
     global running
+    global score_list
     screen.fill((0,0,0,))
-    print("game end called")
-    score1 = font.render("             player1            player2",True,(255,255,255))
-    score2 = font.render("             round1             round2", True, (255, 255, 255))
-    score3 = font.render("             round1             round2", True, (255, 255, 255))
-    score4 = font.render("             round1             round2", True, (255, 255, 255))
-    screen.blit(score1,(200,200))
+    #print("game end called")
+    score1 = font.render("                  player1            player2",True,(255,255,255))
+    score2 = font.render("round1           " + str(score_list[0]) + "               " + str(score_list[1]),True, (255, 255, 255))
+    score3 = font.render("round2           " + str(score_list[2]) + "               " + str(score_list[3]),True, (255, 255, 255))
+    score4 = font.render("round3           " + str(score_list[4]) + "               " + str(score_list[5]),True, (255, 255, 255))
+    #score5 = font.render("Total          " + str(score_list[0]+score_list[2]+score_list[4]) + "               " + str(score_list[1]+score_list[3]+score_list[5]), True,(255, 255, 255))
+
+
+    screen.blit(score1,(300,300))
+    screen.blit(score2,(300,400))
+    screen.blit(score3, (300, 450))
+    screen.blit(score4, (300, 500))
+    #screen.blit(score5, (300, 350))
+
 
     for event in pygame.event.get():
         if event.type==pygame.KEYDOWN:
             if event.key == pygame.K_SPACE :
-                print("space os pressed")
+                print("space pressed")
                 running = False
 
 counter = 0
@@ -289,6 +298,7 @@ while running:
 
 
     if rounding <= 6:
+        print("rounding < 6")
         screen.fill((57, 58, 120))
         for event in pygame.event.get():
 
@@ -486,7 +496,11 @@ while running:
         if rounding < 6:
             show_score(textX, textY)
             show_round(textZ, textA)
-        pygame.display.update()
-  
-    if rounding > 6:
+
+
+    if rounding >= 6:
+        rounding > 6
+        screen.fill((0 ,0 ,0))
         gameend()
+
+    pygame.display.update()

@@ -3,7 +3,7 @@ import random
 import math
 
 # initialise pygame
-# comment by divyansh
+# comment by Aaryan
 pygame.init()
 
 # creating the screen
@@ -14,7 +14,7 @@ pygame.display.set_caption(" The Battle of the Morannon")
 icon = pygame.image.load('onering.png')
 pygame.display.set_icon(icon)
 
-
+# Randomization
 def randomXgenerate(x, y):
     return random.randint(x, y)
 
@@ -25,19 +25,23 @@ player1X = 460
 player1Y = 720
 playerX = 460
 playerY = 720
+
 # player2 = Rohanians
 player2img = pygame.image.load('player1.png')
 player2X = 460
 player2Y = 5
-#rounds
+
+# rounds
 rounding = 1
 enemyfor1X_change = 0
 enemyfor1Y_change = 0
+
+# variables used for making the enemy follow the player so as to make the game more effective
 a = 92
 b = 140
 c = 10
 cute = 5
-# enemy
+# moving and fixed enemy picture load and co-ordinates assignment of moving enemies
 enemyfor1img = pygame.image.load('orc1.png')
 enemyfor2img = pygame.image.load('snake.png')
 enemyfor3img = pygame.image.load('orc2.png')
@@ -49,22 +53,15 @@ enemyfor2X = random.randint(0, 900)
 enemyfor2Y = 340
 enemyfor3X = random.randint(0, 900)
 enemyfor3Y = 590
-# enemyfor4X = random.randint(0,900)
-# enemyfor4Y = 0
-# enemyfor5X = random.randint(0,900)
-# enemyfor5Y = 0
 enemyfor11X = random.randint(0, 900)
 enemyfor11Y = 150
 enemyfor21X = random.randint(0, 900)
 enemyfor21Y = 400
 enemyfor31X = random.randint(0, 900)
 enemyfor31Y = 650
-# enemyfor41X = random.randint(0,900)
-# enemyfor41Y = 0
-# enemyfor51X = random.randint(0,900)
-# enemyfor51Y = 0
 
-#fixed obstacles
+
+# fixed obstacles co-ordinates assignment at random
 fixedobstacle1X = randomXgenerate(0, 350)
 fixedobstacle1Y = 210
 
@@ -83,9 +80,7 @@ fixedobstacle01Y = 10
 fixedobstacle02X = randomXgenerate(0, 200)
 fixedobstacle02Y = 730
 
-score_list = [None]*6
-time_score = 100
-time_score_change = 0.1
+# movement of player and enemies
 player1X_change = 0
 player1Y_change = 0
 enemyspeed = 0.8
@@ -93,10 +88,10 @@ enemyspeed1 = 1
 enemyspeed2 = 1.5
 playerspeed = 4
 
-# basestation
+# partitions image load
 basestation = pygame.image.load('wood.png')
 
-# fixed obstacles
+# fixed obstacles image load
 fixedobstacle1img = pygame.image.load('trap.png')
 fixedobstacle2img = pygame.image.load('volcano256.png')
 fixedobstacle3img = pygame.image.load('traps.png')
@@ -104,12 +99,18 @@ fixedobstacle4img = pygame.image.load('skull2.png')
 fixedobstacle01img = pygame.image.load('fire64.png')
 fixedobstacle02img = pygame.image.load('toxic.png')
 
+# keeping track of score and creating a list to store score obtained due to passing obstacles as well as time
+score_list = [None]*6
+time_score = 100
+time_score_change = 0.1
 score_value = 0
+
+# assigning font and siz to the text to be displayed on the screen
 font = pygame.font.Font('freesansbold.ttf', 24)
 
+# assigning co-ordinates for showing score and rounds
 textX = 10
 textY = 10
-
 textZ = 900
 textA = 10
 reseter = 0
@@ -143,13 +144,6 @@ def enemyfor2(x, y):
 def enemyfor3(x, y):
     screen.blit(enemyfor3img, (x, y))
 
-
-# def enemyfor4(x, y):
-#     screen.blit(enemyfor4img, (x, y))
-#
-# def enemyfor5(x, y):
-#     screen.blit(enemyfor5img, (x, y))
-
 def enemyfor11(x, y):
     screen.blit(enemyfor2img, (x, y))
 
@@ -161,12 +155,6 @@ def enemyfor21(x, y):
 def enemyfor31(x, y):
     screen.blit(enemyfor4img, (x, y))
 
-
-# def enemyfor41(x, y):
-#     screen.blit(enemyfor3img, (x, y))
-#
-# def enemyfor51(x, y):
-#     screen.blit(enemyfor1img, (x, y))
 
 def fixedobstacle1(x, y):
     screen.blit(fixedobstacle1img, (x, y))
@@ -206,6 +194,7 @@ def isCollisiono(enemyX, enemyY, playerX, playerY):
         return True
     else:
         return False
+# in order to resetting the game whenever player die, or complete a round
 def resetgame():
     print("reset game called")
     global counter, cr1, cr2, cr3, cr4, cr5, cr6, cr7, cr8, cr9, cr10, cr11, cr12, time_score_change
@@ -239,6 +228,7 @@ def resetgame():
     print(player1X,player1Y)
     print(rounding)
 
+#increasing the speed of the enemy in the subsequent rounds
     if  rounding%2==0:
         player1X = player2X
         player1Y = player2Y
@@ -250,6 +240,8 @@ def resetgame():
         player1Y = playerY
 
     print(player1X,player1Y,rounding)
+
+    # ending of the game with the scoreboard and the winner and the quitting instructions
 def gameend():
     global running
     global score_list
@@ -269,12 +261,14 @@ def gameend():
     elif score_list[0]+score_list[2]+score_list[4] == score_list[1]+score_list[3]+score_list[5]:
         screen.blit(score6,(300,550))
     score7 = font.render("PLAYER" + str(vic) + " is the WINNER",True,(255,255,255))
+    escape = font.render("Press space bar to quit the game", True, (255, 255, 255))
     screen.blit(score1,(300,200))
     screen.blit(score2,(300,300))
     screen.blit(score3, (300, 350))
     screen.blit(score4, (300, 400))
     screen.blit(score5, (300, 450))
     screen.blit(score7, (300, 550))
+    screen.blit(escape, (300, 600))
 
 
     for event in pygame.event.get():
@@ -299,13 +293,7 @@ cr12 = 0
 
 running = True
 while running:
-    # background color
-
-
-
-
-
-
+    # background color when in the game
     if rounding <= 6:
         print("rounding < 6")
         screen.fill((57, 58, 120))
@@ -315,7 +303,7 @@ while running:
             if event.type == pygame.QUIT:
                 running = False
 
-            # check pressed key
+            # check pressed key and enable them to move the players accordingly
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     player1X_change = -playerspeed
@@ -337,7 +325,7 @@ while running:
 
 
 
-
+# placing the partitions or slabs
         if rounding<=6:
             for j in range(0, 960, 45):
                 i = 10
@@ -363,7 +351,7 @@ while running:
             fixedobstacle02(fixedobstacle02X, fixedobstacle02Y)
             fixedobastacle4(fixedobstacle4X, fixedobstacle4Y)
 
-        # stoping the player from going out of border
+        # stopping the player from going out of border
         # introducing boundaries
         # beyond boundaries
         if player1X < 0 or player1X > 939:
@@ -403,6 +391,7 @@ while running:
             elif player1X > enemyfor31X:
                 enemyfor31X += enemyspeed1
 
+# calling the collision functions
         collision1 = isCollision(enemyfor1X, enemyfor1Y, player1X, player1Y)
         collision2 = isCollision(enemyfor2X, enemyfor2Y, player1X, player1Y)
         collision3 = isCollision(enemyfor3X, enemyfor3Y, player1X, player1Y)
@@ -419,28 +408,8 @@ while running:
         if collision1 or collision2 or collision3 or collision4 or collision5 or collision6 or collision7 or collision8 or collision9 or collision10 or collision11 or collision12:
             # what to do when dead
             resetgame()
-        # Game loop
 
-        # if  (player1Y > c + 3 *b + 5 and player1Y < c + 7*b):
-        #     if player1X < enemyfor4X:
-        #         enemyfor4X -= enemyspeed
-        #     elif player1X > enemyfor4X:
-        #         enemyfor4X += enemyspeed
-        #     if player1X < enemyfor41X:
-        #         enemyfor41X -= enemyspeed2
-        #     elif player1X > enemyfor41X:
-        #         enemyfor41X += enemyspeed
-        #
-        # if  (player1Y > c + 4 *b and player1Y < c + 9*b):
-        #     if player1X < enemyfor5X:
-        #         enemyfor5X -= enemyspeed
-        #     elif player1X > enemyfor5X:
-        #         enemyfor5X += enemyspeed1
-        #     if player1X < enemyfor51X:
-        #         enemyfor51X -= enemyspeed
-        #     elif player1X > enemyfor51X:
-        #         enemyfor51X += enemyspeed2
-
+# changing the time RELATED score values and obstacle crossing score values
         if (((player1Y < enemyfor1Y and rounding % 2 == 1) or (player1Y + cute > enemyfor1Y and rounding % 2 == 0)) and cr1 == 0):
             counter = 1
             cr1 = 1
@@ -477,20 +446,22 @@ while running:
         if (((player1Y < fixedobstacle02Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle02Y and rounding % 2 == 0)) and cr12 == 0):
             counter = 2
             cr12 = 1
+
+            # for crossing moving obstacles increase the score by 10
         if counter == 1:
             score_value += 10
             counter = 0
+            # for crossing stationary obstacles, increasing the scoe by 5
         if counter == 2:
             score_value += 5
             counter = 0
+            # when to switch rounds
         if score_value == 90:
              resetgame()
+        # reducing score due to time spent
         time_score-=time_score_change
 
-
-
-
-
+# calling all the functions
         player1(player1X, player1Y)
         enemyfor1(enemyfor1X, enemyfor1Y)
         enemyfor2(enemyfor2X, enemyfor2Y)
@@ -506,7 +477,7 @@ while running:
             show_score(textX, textY)
             show_round(textZ, textA)
 
-
+# after 3 rounds, quitting while displaying the scoreboard on a black background
     if rounding > 6:
 
         for event in pygame.event.get():
@@ -521,5 +492,5 @@ while running:
 
         screen.fill((0 ,0 ,0))
         gameend()
-
+# to continuously update the screen
     pygame.display.update()

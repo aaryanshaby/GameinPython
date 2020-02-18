@@ -502,7 +502,7 @@ while running:
         enemyfor31(enemyfor31X, enemyfor31Y)
         # enemyfor41(enemyfor41X, enemyfor41Y)
         # enemyfor51(enemyfor51X, enemyfor51Y)
-        if rounding < 6:
+        if rounding <= 6:
             show_score(textX, textY)
             show_round(textZ, textA)
 

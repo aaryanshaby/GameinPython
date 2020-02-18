@@ -116,7 +116,7 @@ textA = 10
 over = pygame.font.Font('freesansbold.ttf', 24)
 
 def show_round(x, y):
-    round = font.render("Round:" + str(rounding), True, (255, 255, 255))
+    round = font.render("Round:" + str(math.ceil(rounding/2)), True, (255, 255, 255))
     screen.blit(round, (x, y))
 
 def show_score(x, y):

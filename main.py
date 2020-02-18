@@ -179,7 +179,7 @@ def fixedobstacle01(x, y):
 def fixedobstacle02(x, y):
     screen.blit(fixedobstacle02img, (x, y))
 
-
+# collision with moving enemies
 def isCollision(enemyX, enemyY, playerX, playerY):
     distance = math.sqrt((math.pow(enemyX - playerX, 2)) + (math.pow(enemyY - player1Y, 2)))
     if distance < 60:
@@ -187,7 +187,7 @@ def isCollision(enemyX, enemyY, playerX, playerY):
     else:
         return False
 
-
+# collision with non - moving enemies
 def isCollisiono(enemyX, enemyY, playerX, playerY):
     distance = math.sqrt((math.pow(enemyX - playerX, 2)) + (math.pow(enemyY - player1Y, 2)))
     if distance < 96:

@@ -112,7 +112,7 @@ textY = 10
 
 textZ = 900
 textA = 10
-
+reseter = 0
 over = pygame.font.Font('freesansbold.ttf', 24)
 
 def show_round(x, y):
@@ -217,6 +217,7 @@ def resetgame():
     time_score_change = 0
     rounding += 1
     counter = 0
+
     cr1 = 0
     cr2 = 0
     cr3 = 0
@@ -255,17 +256,25 @@ def gameend():
     screen.fill((0,0,0,))
     #print("game end called")
     score1 = font.render("                  player1            player2",True,(255,255,255))
-    score2 = font.render("round1           " + str(score_list[0]) + "               " + str(score_list[1]),True, (255, 255, 255))
+    score2 = font.render("round1            " + str(score_list[0]) + "               " + str(score_list[1]),True, (255, 255, 255))
     score3 = font.render("round2           " + str(score_list[2]) + "               " + str(score_list[3]),True, (255, 255, 255))
     score4 = font.render("round3           " + str(score_list[4]) + "               " + str(score_list[5]),True, (255, 255, 255))
-    #score5 = font.render("Total          " + str(score_list[0]+score_list[2]+score_list[4]) + "               " + str(score_list[1]+score_list[3]+score_list[5]), True,(255, 255, 255))
+    score5 = font.render("Total          " + str(score_list[0]+score_list[2]+score_list[4]) + "               " + str(score_list[1]+score_list[3]+score_list[5]), True,(255, 255, 255))
+    score6 = font.render("MATCH IS A DRAW", True, (255,255,255))
 
-
+    if score_list[0]+score_list[2]+score_list[4] > score_list[1]+score_list[3]+score_list[5]:
+        vic = 1
+    elif score_list[0]+score_list[2]+score_list[4] < score_list[1]+score_list[3]+score_list[5]:
+        vic = 2
+    elif score_list[0]+score_list[2]+score_list[4] == score_list[1]+score_list[3]+score_list[5]:
+        screen.blit(score6,(300,650))
+    score7 = font.render("PLAYER" + str(vic) + " is the WINNER",True,(255,255,255))
     screen.blit(score1,(300,300))
     screen.blit(score2,(300,400))
     screen.blit(score3, (300, 450))
     screen.blit(score4, (300, 500))
-    #screen.blit(score5, (300, 350))
+    screen.blit(score5, (300, 550))
+    screen.blit(score7, (300, 650))
 
 
     for event in pygame.event.get():
@@ -499,7 +508,15 @@ while running:
 
 
     if rounding >= 6:
-        rounding > 6
+
+        for event in pygame.event.get():
+
+            # for Quiting
+            if event.type == pygame.QUIT:
+                running = False
+        if reseter==0:
+            reseter=1
+            resetgame()
         screen.fill((0 ,0 ,0))
         gameend()
 

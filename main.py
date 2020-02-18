@@ -250,13 +250,20 @@ def resetgame():
 
     print(player1X,player1Y,rounding)
 def gameend():
+    global running
     screen.fill((0,0,0,))
-    score1 = font.render( "             round1             round2",True,(255,255,255))
+    print("game end called")
+    score1 = font.render("             player1            player2",True,(255,255,255))
+    score2 = font.render("             round1             round2", True, (255, 255, 255))
+    score3 = font.render("             round1             round2", True, (255, 255, 255))
+    score4 = font.render("             round1             round2", True, (255, 255, 255))
     screen.blit(score1,(200,200))
-    for event1 in pygame.event.get():
-        if event1 == pygame.K_SPACE:
-            print("space os pressed")
-            exit()
+
+    for event in pygame.event.get():
+        if event.type==pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE :
+                print("space os pressed")
+                running = False
 
 counter = 0
 cr1 = 0
@@ -276,11 +283,11 @@ running = True
 while running:
     # background color
 
-    if rounding > 6:
-        gameend()
-        break
 
-    screen.fill((91, 49, 0))
+
+
+    if rounding < 6:
+        screen.fill((57, 58, 120))
     for event in pygame.event.get():
 
         # for Quiting
@@ -307,19 +314,25 @@ while running:
     player1X += player1X_change
     player1Y += player1Y_change
 
-    for j in range(0, 960, 45):
-        i = 10
-        fbasestation(j, i)
-        i = 220
-        fbasestation(j, i)
-        i = 260
-        fbasestation(j, i)
-        i = 470
-        fbasestation(j, i)
-        i = 515
-        fbasestation(j, i)
-        i = 735
-        fbasestation(j, i)
+
+
+
+    if rounding<6:
+        for j in range(0, 960, 45):
+            i = 10
+            fbasestation(j, i)
+            i = 220
+            fbasestation(j, i)
+            i = 260
+            fbasestation(j, i)
+            i = 470
+            fbasestation(j, i)
+            i = 515
+            fbasestation(j, i)
+            i = 735
+            fbasestation(j, i)
+
+
 
         # placing fixed obstacles
         fixedobstacle1(fixedobstacle1X, fixedobstacle1Y)
@@ -468,6 +481,10 @@ while running:
     enemyfor31(enemyfor31X, enemyfor31Y)
     # enemyfor41(enemyfor41X, enemyfor41Y)
     # enemyfor51(enemyfor51X, enemyfor51Y)
-    show_score(textX, textY)
-    show_round(textZ, textA)
+    if rounding < 6:
+        show_score(textX, textY)
+        show_round(textZ, textA)
     pygame.display.update()
+
+    if rounding > 6:
+        gameend()

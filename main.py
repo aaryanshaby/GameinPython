@@ -253,8 +253,11 @@ def gameend():
     screen.fill((0,0,0,))
     score1 = font.render( "             round1             round2",True,(255,255,255))
     screen.blit(score1,(200,200))
-    while 1:
-        pass
+    for event1 in pygame.event.get():
+        if event1 == pygame.K_SPACE:
+            print("space os pressed")
+            exit()
+
 counter = 0
 cr1 = 0
 cr2 = 0
@@ -273,7 +276,7 @@ running = True
 while running:
     # background color
 
-    if rounding == 6:
+    if rounding > 6:
         gameend()
         break
 

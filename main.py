@@ -338,7 +338,7 @@ while running:
 
 
 
-        if rounding<6:
+        if rounding<=6:
             for j in range(0, 960, 45):
                 i = 10
                 fbasestation(j, i)
@@ -507,16 +507,17 @@ while running:
             show_round(textZ, textA)
 
 
-    if rounding >= 6:
+    if rounding > 6:
 
         for event in pygame.event.get():
 
             # for Quiting
             if event.type == pygame.QUIT:
                 running = False
-        if reseter==0:
-            reseter=1
-            resetgame()
+
+        # if reseter==0:
+        #     reseter=1
+        #     resetgame()
         screen.fill((0 ,0 ,0))
         gameend()
 

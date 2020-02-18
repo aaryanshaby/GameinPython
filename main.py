@@ -286,205 +286,207 @@ while running:
 
 
 
-    if rounding < 6:
+
+
+    if rounding <= 6:
         screen.fill((57, 58, 120))
-    for event in pygame.event.get():
+        for event in pygame.event.get():
 
-        # for Quiting
-        if event.type == pygame.QUIT:
-            running = False
+            # for Quiting
+            if event.type == pygame.QUIT:
+                running = False
 
-        # check pressed key
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                player1X_change = -playerspeed
-            if event.key == pygame.K_RIGHT:
-                player1X_change = playerspeed
-            if event.key == pygame.K_UP:
-                player1Y_change = -playerspeed
-            if event.key == pygame.K_DOWN:
-                player1Y_change = playerspeed
+            # check pressed key
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    player1X_change = -playerspeed
+                if event.key == pygame.K_RIGHT:
+                    player1X_change = playerspeed
+                if event.key == pygame.K_UP:
+                    player1Y_change = -playerspeed
+                if event.key == pygame.K_DOWN:
+                    player1Y_change = playerspeed
 
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
-                player1X_change = 0
-            if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
-                player1Y_change = 0
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
+                    player1X_change = 0
+                if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+                    player1Y_change = 0
 
-    player1X += player1X_change
-    player1Y += player1Y_change
-
-
-
-
-    if rounding<6:
-        for j in range(0, 960, 45):
-            i = 10
-            fbasestation(j, i)
-            i = 220
-            fbasestation(j, i)
-            i = 260
-            fbasestation(j, i)
-            i = 470
-            fbasestation(j, i)
-            i = 515
-            fbasestation(j, i)
-            i = 735
-            fbasestation(j, i)
-
-
-
-        # placing fixed obstacles
-        fixedobstacle1(fixedobstacle1X, fixedobstacle1Y)
-        fixedobstacle2(fixedobstacle2X, fixedobstacle2Y)
-        fixedobstacle3(fixedobstacle3X, fixedobstacle3Y)
-        fixedobstacle01(fixedobstacle01X, fixedobstacle01Y)
-        fixedobstacle02(fixedobstacle02X, fixedobstacle02Y)
-        fixedobastacle4(fixedobstacle4X, fixedobstacle4Y)
-
-    # stoping the player from going out of border
-    # introducing boundaries
-    # beyond boundaries
-    if player1X < 0 or player1X > 939:
-        player1X_change = 0
-    if player1Y < 0 or player1Y > 730:
-        player1Y_change = 0
-
-    # enemy follows the player
-
-    if (player1Y > 20 and player1Y < 400):
-        if player1X < enemyfor1X:
-            enemyfor1X -= enemyspeed
-        elif player1X > enemyfor1X:
-            enemyfor1X += enemyspeed
-        if player1X < enemyfor11X:
-            enemyfor11X -= enemyspeed1
-        elif player1X > enemyfor11X:
-            enemyfor11X += enemyspeed1
-
-    if (player1Y > c + b - 5 and player1Y < c + 4 * b):
-        if player1X < enemyfor2X:
-            enemyfor2X -= enemyspeed1
-        elif player1X > enemyfor2X:
-            enemyfor2X += enemyspeed
-        if player1X < enemyfor21X:
-            enemyfor21X -= enemyspeed
-        elif player1X > enemyfor21X:
-            enemyfor21X += enemyspeed1
-
-    if (player1Y > c + 2 * b + 5 and player1Y < c + 5 * b):
-        if player1X < enemyfor3X:
-            enemyfor3X -= enemyspeed1
-        elif player1X > enemyfor3X:
-            enemyfor3X += enemyspeed
-        if player1X < enemyfor31X:
-            enemyfor31X -= enemyspeed2
-        elif player1X > enemyfor31X:
-            enemyfor31X += enemyspeed1
-
-    collision1 = isCollision(enemyfor1X, enemyfor1Y, player1X, player1Y)
-    collision2 = isCollision(enemyfor2X, enemyfor2Y, player1X, player1Y)
-    collision3 = isCollision(enemyfor3X, enemyfor3Y, player1X, player1Y)
-    collision4 = isCollision(enemyfor11X, enemyfor11Y, player1X, player1Y)
-    collision5 = isCollision(enemyfor21X, enemyfor21Y, player1X, player1Y)
-    collision6 = isCollision(enemyfor31X, enemyfor31Y, player1X, player1Y)
-    collision7 = isCollisiono(fixedobstacle1X, fixedobstacle1Y, player1X, player1Y)
-    collision8 = isCollisiono(fixedobstacle2X, fixedobstacle2Y, player1X, player1Y)
-    collision9 = isCollisiono(fixedobstacle3X, fixedobstacle3Y, player1X, player1Y)
-    collision10 = isCollisiono(fixedobstacle4X, fixedobstacle4Y, player1X, player1Y)
-    collision11 = isCollision(fixedobstacle01X, fixedobstacle01Y, player1X, player1Y)
-    collision12 = isCollision(fixedobstacle02X, fixedobstacle02Y, player1X, player1Y)
-
-    if collision1 or collision2 or collision3 or collision4 or collision5 or collision6 or collision7 or collision8 or collision9 or collision10 or collision11 or collision12:
-        # what to do when dead
-        resetgame()
-    # Game loop
-
-    # if  (player1Y > c + 3 *b + 5 and player1Y < c + 7*b):
-    #     if player1X < enemyfor4X:
-    #         enemyfor4X -= enemyspeed
-    #     elif player1X > enemyfor4X:
-    #         enemyfor4X += enemyspeed
-    #     if player1X < enemyfor41X:
-    #         enemyfor41X -= enemyspeed2
-    #     elif player1X > enemyfor41X:
-    #         enemyfor41X += enemyspeed
-    #
-    # if  (player1Y > c + 4 *b and player1Y < c + 9*b):
-    #     if player1X < enemyfor5X:
-    #         enemyfor5X -= enemyspeed
-    #     elif player1X > enemyfor5X: 
-    #         enemyfor5X += enemyspeed1
-    #     if player1X < enemyfor51X:
-    #         enemyfor51X -= enemyspeed
-    #     elif player1X > enemyfor51X:
-    #         enemyfor51X += enemyspeed2
-
-    if (((player1Y < enemyfor1Y and rounding % 2 == 1) or (player1Y + cute > enemyfor1Y and rounding % 2 == 0)) and cr1 == 0):
-        counter = 1
-        cr1 = 1
-    if (((player1Y < enemyfor11Y and rounding % 2 == 1) or (player1Y + cute > enemyfor11Y and rounding % 2 == 0)) and cr11 == 0):
-        counter = 1
-        cr11 = 1
-    if (((player1Y < enemyfor2Y and rounding % 2 == 1) or (player1Y + cute > enemyfor2Y and rounding % 2 == 0)) and cr3 == 0):
-        counter = 1
-        cr3 = 1
-    if (((player1Y < enemyfor21Y and rounding % 2 == 1) or (player1Y + cute > enemyfor21Y and rounding % 2 == 0)) and cr4 == 0):
-        counter = 1
-        cr4 = 1
-    if (((player1Y < enemyfor3Y and rounding % 2 == 1) or (player1Y + cute > enemyfor3Y and rounding % 2 == 0)) and cr2 == 0):
-        counter = 1
-        cr2 = 1
-    if (((player1Y < enemyfor31Y and rounding % 2 == 1) or (player1Y + cute > enemyfor31Y and rounding % 2 == 0)) and cr5 == 0):
-        counter = 1
-        cr5 = 1
-    if (((player1Y < fixedobstacle1Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle1Y and rounding % 2 == 0)) and cr6 == 0):
-        counter = 1
-        cr6 = 1
-    if (((player1Y < fixedobstacle2Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle2Y and rounding % 2 == 0)) and cr7 == 0):
-        counter = 1
-        cr7 = 1
-    if (((player1Y < fixedobstacle3Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle3Y and rounding % 2 == 0)) and cr8 == 0):
-        counter = 1
-        cr8 = 1
-    if (((player1Y < fixedobstacle4Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle4Y and rounding % 2 == 0)) and cr9 == 0):
-        counter = 1
-        cr9 = 1
-    if (((player1Y < fixedobstacle01Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle01Y and rounding % 2 == 0)) and cr10 == 0):
-        counter = 2
-        cr10 = 1
-    if (((player1Y < fixedobstacle02Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle02Y and rounding % 2 == 0)) and cr12 == 0):
-        counter = 2
-        cr12 = 1
-    if counter == 1:
-        score_value += 10
-        counter = 0
-    if counter == 2:
-        score_value += 5
-        counter = 0
-    if score_value == 90:
-         resetgame()
-    time_score-=time_score_change
+        player1X += player1X_change
+        player1Y += player1Y_change
 
 
 
 
+        if rounding<6:
+            for j in range(0, 960, 45):
+                i = 10
+                fbasestation(j, i)
+                i = 220
+                fbasestation(j, i)
+                i = 260
+                fbasestation(j, i)
+                i = 470
+                fbasestation(j, i)
+                i = 515
+                fbasestation(j, i)
+                i = 735
+                fbasestation(j, i)
 
-    player1(player1X, player1Y)
-    enemyfor1(enemyfor1X, enemyfor1Y)
-    enemyfor2(enemyfor2X, enemyfor2Y)
-    enemyfor3(enemyfor3X, enemyfor3Y)
-    # enemyfor4(enemyfor4X, enemyfor4Y)
-    # enemyfor5(enemyfor5X, enemyfor5Y)
-    enemyfor11(enemyfor11X, enemyfor11Y)
-    enemyfor21(enemyfor21X, enemyfor21Y)
-    enemyfor31(enemyfor31X, enemyfor31Y)
-    # enemyfor41(enemyfor41X, enemyfor41Y)
-    # enemyfor51(enemyfor51X, enemyfor51Y)
-    if rounding < 6:
-        show_score(textX, textY)
-        show_round(textZ, textA)
-    pygame.display.update()
 
+
+            # placing fixed obstacles
+            fixedobstacle1(fixedobstacle1X, fixedobstacle1Y)
+            fixedobstacle2(fixedobstacle2X, fixedobstacle2Y)
+            fixedobstacle3(fixedobstacle3X, fixedobstacle3Y)
+            fixedobstacle01(fixedobstacle01X, fixedobstacle01Y)
+            fixedobstacle02(fixedobstacle02X, fixedobstacle02Y)
+            fixedobastacle4(fixedobstacle4X, fixedobstacle4Y)
+
+        # stoping the player from going out of border
+        # introducing boundaries
+        # beyond boundaries
+        if player1X < 0 or player1X > 939:
+            player1X_change = 0
+        if player1Y < 0 or player1Y > 730:
+            player1Y_change = 0
+
+        # enemy follows the player
+
+        if (player1Y > 20 and player1Y < 400):
+            if player1X < enemyfor1X:
+                enemyfor1X -= enemyspeed
+            elif player1X > enemyfor1X:
+                enemyfor1X += enemyspeed
+            if player1X < enemyfor11X:
+                enemyfor11X -= enemyspeed1
+            elif player1X > enemyfor11X:
+                enemyfor11X += enemyspeed1
+
+        if (player1Y > c + b - 5 and player1Y < c + 4 * b):
+            if player1X < enemyfor2X:
+                enemyfor2X -= enemyspeed1
+            elif player1X > enemyfor2X:
+                enemyfor2X += enemyspeed
+            if player1X < enemyfor21X:
+                enemyfor21X -= enemyspeed
+            elif player1X > enemyfor21X:
+                enemyfor21X += enemyspeed1
+
+        if (player1Y > c + 2 * b + 5 and player1Y < c + 5 * b):
+            if player1X < enemyfor3X:
+                enemyfor3X -= enemyspeed1
+            elif player1X > enemyfor3X:
+                enemyfor3X += enemyspeed
+            if player1X < enemyfor31X:
+                enemyfor31X -= enemyspeed2
+            elif player1X > enemyfor31X:
+                enemyfor31X += enemyspeed1
+
+        collision1 = isCollision(enemyfor1X, enemyfor1Y, player1X, player1Y)
+        collision2 = isCollision(enemyfor2X, enemyfor2Y, player1X, player1Y)
+        collision3 = isCollision(enemyfor3X, enemyfor3Y, player1X, player1Y)
+        collision4 = isCollision(enemyfor11X, enemyfor11Y, player1X, player1Y)
+        collision5 = isCollision(enemyfor21X, enemyfor21Y, player1X, player1Y)
+        collision6 = isCollision(enemyfor31X, enemyfor31Y, player1X, player1Y)
+        collision7 = isCollisiono(fixedobstacle1X, fixedobstacle1Y, player1X, player1Y)
+        collision8 = isCollisiono(fixedobstacle2X, fixedobstacle2Y, player1X, player1Y)
+        collision9 = isCollisiono(fixedobstacle3X, fixedobstacle3Y, player1X, player1Y)
+        collision10 = isCollisiono(fixedobstacle4X, fixedobstacle4Y, player1X, player1Y)
+        collision11 = isCollision(fixedobstacle01X, fixedobstacle01Y, player1X, player1Y)
+        collision12 = isCollision(fixedobstacle02X, fixedobstacle02Y, player1X, player1Y)
+
+        if collision1 or collision2 or collision3 or collision4 or collision5 or collision6 or collision7 or collision8 or collision9 or collision10 or collision11 or collision12:
+            # what to do when dead
+            resetgame()
+        # Game loop
+
+        # if  (player1Y > c + 3 *b + 5 and player1Y < c + 7*b):
+        #     if player1X < enemyfor4X:
+        #         enemyfor4X -= enemyspeed
+        #     elif player1X > enemyfor4X:
+        #         enemyfor4X += enemyspeed
+        #     if player1X < enemyfor41X:
+        #         enemyfor41X -= enemyspeed2
+        #     elif player1X > enemyfor41X:
+        #         enemyfor41X += enemyspeed
+        #
+        # if  (player1Y > c + 4 *b and player1Y < c + 9*b):
+        #     if player1X < enemyfor5X:
+        #         enemyfor5X -= enemyspeed
+        #     elif player1X > enemyfor5X:
+        #         enemyfor5X += enemyspeed1
+        #     if player1X < enemyfor51X:
+        #         enemyfor51X -= enemyspeed
+        #     elif player1X > enemyfor51X:
+        #         enemyfor51X += enemyspeed2
+
+        if (((player1Y < enemyfor1Y and rounding % 2 == 1) or (player1Y + cute > enemyfor1Y and rounding % 2 == 0)) and cr1 == 0):
+            counter = 1
+            cr1 = 1
+        if (((player1Y < enemyfor11Y and rounding % 2 == 1) or (player1Y + cute > enemyfor11Y and rounding % 2 == 0)) and cr11 == 0):
+            counter = 1
+            cr11 = 1
+        if (((player1Y < enemyfor2Y and rounding % 2 == 1) or (player1Y + cute > enemyfor2Y and rounding % 2 == 0)) and cr3 == 0):
+            counter = 1
+            cr3 = 1
+        if (((player1Y < enemyfor21Y and rounding % 2 == 1) or (player1Y + cute > enemyfor21Y and rounding % 2 == 0)) and cr4 == 0):
+            counter = 1
+            cr4 = 1
+        if (((player1Y < enemyfor3Y and rounding % 2 == 1) or (player1Y + cute > enemyfor3Y and rounding % 2 == 0)) and cr2 == 0):
+            counter = 1
+            cr2 = 1
+        if (((player1Y < enemyfor31Y and rounding % 2 == 1) or (player1Y + cute > enemyfor31Y and rounding % 2 == 0)) and cr5 == 0):
+            counter = 1
+            cr5 = 1
+        if (((player1Y < fixedobstacle1Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle1Y and rounding % 2 == 0)) and cr6 == 0):
+            counter = 1
+            cr6 = 1
+        if (((player1Y < fixedobstacle2Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle2Y and rounding % 2 == 0)) and cr7 == 0):
+            counter = 1
+            cr7 = 1
+        if (((player1Y < fixedobstacle3Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle3Y and rounding % 2 == 0)) and cr8 == 0):
+            counter = 1
+            cr8 = 1
+        if (((player1Y < fixedobstacle4Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle4Y and rounding % 2 == 0)) and cr9 == 0):
+            counter = 1
+            cr9 = 1
+        if (((player1Y < fixedobstacle01Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle01Y and rounding % 2 == 0)) and cr10 == 0):
+            counter = 2
+            cr10 = 1
+        if (((player1Y < fixedobstacle02Y and rounding % 2 == 1) or (player1Y + cute > fixedobstacle02Y and rounding % 2 == 0)) and cr12 == 0):
+            counter = 2
+            cr12 = 1
+        if counter == 1:
+            score_value += 10
+            counter = 0
+        if counter == 2:
+            score_value += 5
+            counter = 0
+        if score_value == 90:
+             resetgame()
+        time_score-=time_score_change
+
+
+
+
+
+        player1(player1X, player1Y)
+        enemyfor1(enemyfor1X, enemyfor1Y)
+        enemyfor2(enemyfor2X, enemyfor2Y)
+        enemyfor3(enemyfor3X, enemyfor3Y)
+        # enemyfor4(enemyfor4X, enemyfor4Y)
+        # enemyfor5(enemyfor5X, enemyfor5Y)
+        enemyfor11(enemyfor11X, enemyfor11Y)
+        enemyfor21(enemyfor21X, enemyfor21Y)
+        enemyfor31(enemyfor31X, enemyfor31Y)
+        # enemyfor41(enemyfor41X, enemyfor41Y)
+        # enemyfor51(enemyfor51X, enemyfor51Y)
+        if rounding < 6:
+            show_score(textX, textY)
+            show_round(textZ, textA)
+        pygame.display.update()
+  
     if rounding > 6:
         gameend()

@@ -249,6 +249,12 @@ def resetgame():
         player1Y = playerY
 
     print(player1X,player1Y,rounding)
+def gameend():
+    screen.fill((0,0,0,))
+    score1 = font.render( "             round1             round2",True,(255,255,255))
+    screen.blit(score1,(200,200))
+    while 1:
+        pass
 counter = 0
 cr1 = 0
 cr2 = 0
@@ -266,6 +272,11 @@ cr12 = 0
 running = True
 while running:
     # background color
+
+    if rounding == 6:
+        gameend()
+        break
+
     screen.fill((91, 49, 0))
     for event in pygame.event.get():
 

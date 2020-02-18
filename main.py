@@ -77,10 +77,10 @@ fixedobstacle3Y = 210
 fixedobstacle4X = randomXgenerate(390, 900)
 fixedobstacle4Y = 450
 
-fixedobstacle01X = randomXgenerate(450, 900)
+fixedobstacle01X = randomXgenerate(600, 900)
 fixedobstacle01Y = 10
 
-fixedobstacle02X = randomXgenerate(0, 300)
+fixedobstacle02X = randomXgenerate(0, 200)
 fixedobstacle02Y = 730
 
 score_list = [None]*6
@@ -88,10 +88,10 @@ time_score = 100
 time_score_change = 0.1
 player1X_change = 0
 player1Y_change = 0
-enemyspeed = 2
-enemyspeed1 = 2
-enemyspeed2 = 2
-playerspeed = 5
+enemyspeed = 0.8
+enemyspeed1 = 1
+enemyspeed2 = 1.5
+playerspeed = 4
 
 # basestation
 basestation = pygame.image.load('wood.png')
@@ -267,14 +267,14 @@ def gameend():
     elif score_list[0]+score_list[2]+score_list[4] < score_list[1]+score_list[3]+score_list[5]:
         vic = 2
     elif score_list[0]+score_list[2]+score_list[4] == score_list[1]+score_list[3]+score_list[5]:
-        screen.blit(score6,(300,650))
+        screen.blit(score6,(300,550))
     score7 = font.render("PLAYER" + str(vic) + " is the WINNER",True,(255,255,255))
-    screen.blit(score1,(300,300))
-    screen.blit(score2,(300,400))
-    screen.blit(score3, (300, 450))
-    screen.blit(score4, (300, 500))
-    screen.blit(score5, (300, 550))
-    screen.blit(score7, (300, 650))
+    screen.blit(score1,(300,200))
+    screen.blit(score2,(300,300))
+    screen.blit(score3, (300, 350))
+    screen.blit(score4, (300, 400))
+    screen.blit(score5, (300, 450))
+    screen.blit(score7, (300, 550))
 
 
     for event in pygame.event.get():

@@ -88,9 +88,9 @@ time_score = 100
 time_score_change = 0.1
 player1X_change = 0
 player1Y_change = 0
-enemyspeed = 1
+enemyspeed = 2
 enemyspeed1 = 2
-enemyspeed2 = 2.5
+enemyspeed2 = 2
 playerspeed = 5
 
 # basestation
@@ -105,11 +105,19 @@ fixedobstacle01img = pygame.image.load('fire64.png')
 fixedobstacle02img = pygame.image.load('toxic.png')
 
 score_value = 0
-font = pygame.font.Font('freesansbold.ttf', 32)
+font = pygame.font.Font('freesansbold.ttf', 24)
 
 textX = 10
 textY = 10
 
+textZ = 900
+textA = 10
+
+over = pygame.font.Font('freesansbold.ttf', 24)
+
+def show_round(x, y):
+    round = font.render("Round:" + str(rounding), True, (255, 255, 255))
+    screen.blit(round, (x, y))
 
 def show_score(x, y):
     score = font.render("Score:" + str(score_value+ math.floor(time_score)), True, (255, 255, 255))
@@ -447,5 +455,5 @@ while running:
     # enemyfor41(enemyfor41X, enemyfor41Y)
     # enemyfor51(enemyfor51X, enemyfor51Y)
     show_score(textX, textY)
-
+    show_round(textZ, textA)
     pygame.display.update()

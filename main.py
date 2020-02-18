@@ -96,7 +96,8 @@ playerspeed = 4
 
 # partitions image load
 basestation = pygame.image.load('wood.png')
-
+bullet_sound = mixer.Sound('Jump-SoundBible.com-1007297584.wav')
+smash_sound = mixer.Sound('smash.wav')
 # fixed obstacles image load
 fixedobstacle1img = pygame.image.load('trap.png')
 fixedobstacle2img = pygame.image.load('volcano256.png')
@@ -213,6 +214,7 @@ def resetgame():
     rounding += 1
     counter = 0
 
+
     cr1 = 0
     cr2 = 0
     cr3 = 0
@@ -297,12 +299,14 @@ cr10 = 0
 cr11 = 0
 cr12 = 0
 
+
+
 running = True
 while running:
     # background color when in the game
     if rounding <= 6:
         print("rounding < 6")
-        screen.fill((57, 58, 120))
+        screen.fill((50, 100, 200))
         for event in pygame.event.get():
 
             # for Quiting
@@ -320,7 +324,7 @@ while running:
                 if event.key == pygame.K_DOWN:
                     player1Y_change = playerspeed
 
-                bullet_sound = mixer.Sound('Jump-SoundBible.com-1007297584.wav')
+
                 bullet_sound.play()
 
             if event.type == pygame.KEYUP:
@@ -417,6 +421,7 @@ while running:
         if collision1 or collision2 or collision3 or collision4 or collision5 or collision6 or collision7 or collision8 or collision9 or collision10 or collision11 or collision12:
             # what to do when dead
             resetgame()
+            smash_sound.play()
 
 # changing the time RELATED score values and obstacle crossing score values
         if (((player1Y < enemyfor1Y and rounding % 2 == 1) or (player1Y + cute > enemyfor1Y and rounding % 2 == 0)) and cr1 == 0):

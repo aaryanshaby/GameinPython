@@ -1,6 +1,7 @@
-import pygame
-import random
 import math
+import random
+import pygame
+from pygame import mixer
 
 # initialise pygame
 # comment by Aaryan
@@ -13,6 +14,11 @@ screen = pygame.display.set_mode((1000, 800))
 pygame.display.set_caption(" The Battle of the Morannon")
 icon = pygame.image.load('onering.png')
 pygame.display.set_icon(icon)
+
+# Background music
+mixer.music.load('Halloween-creepy-music.mp3')
+mixer.music.play(-1)
+
 
 # Randomization
 def randomXgenerate(x, y):
@@ -313,6 +319,9 @@ while running:
                     player1Y_change = -playerspeed
                 if event.key == pygame.K_DOWN:
                     player1Y_change = playerspeed
+
+                bullet_sound = mixer.Sound('Jump-SoundBible.com-1007297584.wav')
+                bullet_sound.play()
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:

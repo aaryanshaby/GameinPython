@@ -256,10 +256,10 @@ def gameend():
     screen.fill((0,0,0,))
     #print("game end called")
     score1 = font.render("                  player1            player2",True,(255,255,255))
-    score2 = font.render("round1            " + str(score_list[0]) + "               " + str(score_list[1]),True, (255, 255, 255))
+    score2 = font.render("round1           " + str(score_list[0]) + "               " + str(score_list[1]),True, (255, 255, 255))
     score3 = font.render("round2           " + str(score_list[2]) + "               " + str(score_list[3]),True, (255, 255, 255))
     score4 = font.render("round3           " + str(score_list[4]) + "               " + str(score_list[5]),True, (255, 255, 255))
-    score5 = font.render("Total          " + str(score_list[0]+score_list[2]+score_list[4]) + "               " + str(score_list[1]+score_list[3]+score_list[5]), True,(255, 255, 255))
+    score5 = font.render("Total             " + str(score_list[0]+score_list[2]+score_list[4]) + "               " + str(score_list[1]+score_list[3]+score_list[5]), True,(255, 255, 255))
     score6 = font.render("MATCH IS A DRAW", True, (255,255,255))
 
     if score_list[0]+score_list[2]+score_list[4] > score_list[1]+score_list[3]+score_list[5]:
@@ -515,9 +515,10 @@ while running:
             if event.type == pygame.QUIT:
                 running = False
 
-        # if reseter==0:
-        #     reseter=1
-        #     resetgame()
+            if running == False:
+                exit()
+
+
         screen.fill((0 ,0 ,0))
         gameend()
 
